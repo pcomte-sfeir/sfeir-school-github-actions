@@ -1,0 +1,9 @@
+name: call local reusable workflow
+on: 
+  workflow_dispatch:
+
+jobs:
+    build-npm:
+        uses: ./.github/.github/workflows/ex4-reusable.yml@main 
+        with:
+          node_version: 14
