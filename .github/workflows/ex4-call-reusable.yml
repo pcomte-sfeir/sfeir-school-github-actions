@@ -1,0 +1,9 @@
+name: reusable workflow
+on: 
+  workflow_dispatch:
+
+jobs:
+    build-npm:
+        uses: pcomte-sfeir/sfeir-school-github-actions/.github/workflows/ex4-reusable.yml@main 
+        with:
+          noce_version: 14

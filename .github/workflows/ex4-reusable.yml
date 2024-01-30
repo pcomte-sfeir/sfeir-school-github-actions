@@ -1,17 +1,25 @@
 name: reusable workflow
+
 on: 
-  workflow_dispatch:
+    workflow_call:
+        inputs:
+          node_version:
+            required: false
+            type: string
+            default: 'lts/*'
+
 
 jobs:
-  run-npm-test:
-    runs-on: ubuntu-latest
-    steps:
+    reusable_workflow_job:
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
         - name: checkout
           uses: actions/checkout@v3
         - name : setup node
           uses: actions/setup-node@v3
           with:
-            node-version: 'lts/*'
+            node-version: ${{inputs.node_version}}
         - name: run test
           shell: bash
           run: |
