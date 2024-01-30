@@ -21,10 +21,6 @@ jobs:
           with:
               path: ~/.npm
               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-              restore-keys: |
-                ${{ runner.os }}-build-${{ env.cache-name }}-
-                ${{ runner.os }}-build-
-                ${{ runner.os }}-
         - name: run install
           shell: bash
           run: |
@@ -44,7 +40,6 @@ jobs:
           uses: actions/cache@v4
           with:
             path: ~/.npm
-            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
               ${{ runner.os }}-build-${{ env.cache-name }}-
               ${{ runner.os }}-build-
@@ -52,4 +47,5 @@ jobs:
         - name: run test
           shell: bash
           run: |
+            npm 
             npm test
