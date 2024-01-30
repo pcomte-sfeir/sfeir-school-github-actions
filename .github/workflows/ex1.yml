@@ -1,9 +1,9 @@
-name: npm test
+name: Ex1 - npm test
 on: 
   workflow_dispatch:
                
 jobs:
-  job1:
+  job-install:
     runs-on: ubuntu-latest
     steps: 
       - name: Check out repository  # Name of the Step (Optional)
@@ -14,3 +14,16 @@ jobs:
           node-version: 'lts/*'        # Input node version 
       - name: npm install
         run: npm install
+  job-test:
+    needs: job-install
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Check out repository  # Name of the Step (Optional)
+        uses: actions/checkout@v4   # Signature of the action you want to use here from the market place
+      - name: Install Node.js  
+        uses: actions/setup-node@v3 
+        with:
+          node-version: 'lts/*'        # Input node version 
+      - name: npm test
+        run: npm test
+  
