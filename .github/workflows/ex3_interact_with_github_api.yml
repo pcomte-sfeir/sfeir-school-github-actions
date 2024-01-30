@@ -1,4 +1,4 @@
-name: interact with Github API
+name: Ex3 - interact with Github API with curl
 on: 
   pull_request:
     
@@ -11,7 +11,7 @@ jobs:
           run: |
             curl --request POST \
             --url https://api.github.com/repos/pcomte-sfeir/sfeir-school-github-actions/issues \
-            --header 'authorization: Bearer ${{ secret.API_TOKEN_REPO }}' \
+            --header 'authorization: Bearer ${{ secrets.API_TOKEN_REPO }}' \
             --header 'content-type: application/json' \
             --data '{
                 "title": "Automated issue for commit: ${{ steps.short_sha.outputs.sha_short }}",
