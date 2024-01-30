@@ -48,5 +48,4 @@ jobs:
         - name: run test
           shell: bash
           run: |
-            npm 
             npm test
