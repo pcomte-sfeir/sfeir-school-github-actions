@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: short_sha
-          run: echo 'sha_short=${GITHUB_SHA::7}'>>$GITHUB_OUTPUT
+          run: echo 'SHA_SHORT=${GITHUB_SHA::7}'>>$GITHUB_OUTPUT
         - name: create issue
           shell: bash
           run: |
@@ -16,7 +16,7 @@ jobs:
             --header 'authorization: Bearer ${{ secrets.API_TOKEN_REPO }}' \
             --header 'content-type: application/json' \
             --data '{
-                "title": "Automated issue for commit: ${{ steps.short_sha.outputs.sha_short }}",
-                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ steps.short_sha.outputs.sha_short }}_."
+                "title": "Automated issue for commit: ${{ steps.short_sha.outputs.SHA_SHORT }}",
+                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ steps.short_sha.outputs.SHA_SHORT }}_."
                 }' \
             --fail
