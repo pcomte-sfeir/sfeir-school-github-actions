@@ -4,6 +4,6 @@ on:
 
 jobs:
     build-npm:
-        uses: ./.github/workflows/ex4-reusable.yml@main 
+        uses: ./.github/workflows/ex4-reusable.yml
         with:
           node_version: 14
