@@ -1,4 +1,4 @@
-name: Ex3 - interact with Github API with curl
+name: Interact with Github API with curl
 on: 
   pull_request:
     
