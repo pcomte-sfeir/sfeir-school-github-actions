@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: short_sha
-          run: echo 'SHA_SHORT=${GITHUB_SHA::7}'>>$GITHUB_OUTPUT
+          env: 
+            SHA_SHORT: ${GITHUB_SHA::7}
+          run: echo '=${SHA_SHORT}'>>$GITHUB_OUTPUT
         - name: create issue
           shell: bash
           run: |
