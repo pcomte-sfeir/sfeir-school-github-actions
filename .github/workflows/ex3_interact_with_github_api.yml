@@ -1,0 +1,24 @@
+name: Interact with Github API with curl
+on: 
+  pull_request:
+    
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+        - id: short_sha
+          shell: bash  
+          run: |  
+            echo "SHA_SHORT=${GITHUB_SHA::7}" >> ${GITHUB_OUTPUT}
+        - name: create issue
+          shell: bash
+          run: |
+            curl --request POST \
+            --url https://api.github.com/repos/pcomte-sfeir/sfeir-school-github-actions/issues \
+            --header 'authorization: Bearer ${{ secrets.API_TOKEN_REPO }}' \
+            --header 'content-type: application/json' \
+            --data '{
+                "title": "Automated issue for commit: ${{ steps.short_sha.outputs.SHA_SHORT }}",
+                "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ steps.short_sha.outputs.SHA_SHORT }}_."
+                }' \
+            --fail
